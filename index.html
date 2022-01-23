@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Css perspective</title>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <h2>CSS Perspective Playground</h2>
+      <main>
+        <section class="settings">
+          <div class="settings-container">
+            <label>Perspective: {{perspective}} px;</label>
+            <input type="range" min="0" max="999" v-model="perspective" />
+
+            <label>RotateX: {{rotateX}} Deg;</label>
+            <input type="range" min="-180" max="180" v-model="rotateX" />
+
+            <label>RotateY: {{rotateY}} Deg;</label>
+            <input type="range" min="-180" max="180" v-model="rotateY" />
+
+            <label>RotateZ: {{rotateZ}} Deg;</label>
+            <input type="range" min="-180" max="180" v-model="rotateZ" />
+
+            <button type="button" @click.prevent="reset">Reset</button>
+          </div>
+        </section>
+
+        <section class="output">
+          <div class="box-container">
+            <div class="box" :style="box"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <css-doodle>
+      /* put your code here */ :doodle { @grid: 8 / 100vw 100vh; @shape: square;
+      postion: absolute; top: 0; left: 0; } transition: .2s @r(.3s);
+      border-radius: @pick(100% 0, 0 100%); will-change: transform; transform:
+      scale(@r(.25, 1.25)); background: hsla( calc(250 - 10 * @x * @y), 70%,
+      68%, @r.9 );
+    </css-doodle>
+
+    <script src="https://unpkg.com/css-doodle@0.24.1/css-doodle.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
